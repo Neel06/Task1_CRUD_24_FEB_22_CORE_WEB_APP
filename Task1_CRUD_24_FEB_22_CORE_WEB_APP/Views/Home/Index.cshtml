@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<script src="~/lib/AngularJs/angular.js"></script>
+
+<div ng-app="myApp">   
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <input PREVENT type="text" ng-paste="$event.preventDefault()" class="form-control text-center" ng-model="Fun"  placeholder="Paste Functionality is Disabled'" />
+    <br />  <br />{{10+9}}
+    <span class="h3 text-info">{{Fun | uppercase}}</span>
+</div>
+@*<script>
+
+    var myApp = angular.module("myApp", []);
+
+        myApp.directive('PREVENT', function () {
+            
+            return {
+                scope: {},
+                restrict:'A',
+                link: function (element) {
+                    element.on('cut copy paste', function (event) {
+                        event.preventDefault();
+                    })
+                }
+            };
+        });
+
+</script>*@
+    </div>

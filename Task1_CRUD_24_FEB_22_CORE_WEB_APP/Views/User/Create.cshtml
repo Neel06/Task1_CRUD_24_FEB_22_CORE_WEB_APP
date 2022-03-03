@@ -1,0 +1,99 @@
+﻿@model Task1_CRUD_24_FEB_22_CORE_WEB_APP.Models.User
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="text-info text-uppercase">Create User</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form name="form" asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <!--
+            <div class="form-group">
+                <label asp-for="Id" class="control-label text-secondary   "></label>
+                <input asp-for="Id" name="Id" ng-model="Id" class="form-control" required />-->
+                @*<span asp-validation-for="Id" class="text-danger"></span>*@
+                <!--<div ng-show="form.$submitted || form.Id.$touched">
+                    <span ng-show="form.Id.$error.required" class="text-danger"> *Id required.. </span>
+                </div>
+            </div>
+         -->
+
+            <div class="form-group">
+                <label asp-for="First_name" class="control-label"></label>
+                <input asp-for="First_name" name="First_name" ng-model="First_name" ng-paste="$event.preventDefault()" class="form-control" required />
+                @*<span asp-validation-for="First_name" class="text-danger"></span>*@
+                <div ng-show="form.$submitted || form.First_name.$touched">
+                    <span ng-show="form.First_name.$error.required" class="text-danger"> *First name required.. </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Last_name" class="control-label"></label>
+                <input asp-for="Last_name" name="Last_name" ng-model="Last_name" ng-paste="$event.preventDefault()" class="form-control" required />
+                @*<span asp-validation-for="Last_name" class="text-danger"></span>*@
+                <div ng-show="form.$submitted || form.Last_name.$touched">
+                    <span ng-show="form.Last_name.$error.required" class="text-danger"> *Last name required.. </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label"> Select Contact Method</label>
+                <select class="form-control" name="Contact_Method" ng-model="Contact_Method">
+                    <option value="Mobile_No">Mobile No</option>
+                    <option value="Email">Email</option>
+                </select>
+            </div>
+
+
+            <div class="form-group" ng-if="Contact_Method == 'Mobile_No'">
+                <label asp-for="Mobile_No" class="control-label"></label>
+                <input asp-for="Mobile_No" class="form-control" ng-model="Mobile_No" ng-paste="$event.preventDefault()" ng-maxlength="10" ng-minlength="10" name="Mobile_No" required />
+                @*<span asp-validation-for="Mobile_No" class="text-danger"></span>*@
+                <div ng-show="form.$submitted || form.Mobile_No.$touched">
+                    <span ng-show="form.Mobile_No.$error.required" class="text-danger"> *Mobile_No required.. </span>
+                    <span ng-show="form.Mobile_No.$error.minlength" class="text-danger"> *Min 10 length required!! </span>
+                    <span ng-show="form.Mobile_No.$error.maxlength" class="text-danger"> *Max 10 allowed.. </span>
+                </div>
+            </div>
+
+            <div class="form-group"  ng-if="Contact_Method == 'Email'">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" type="email" ng-model="Email" ng-paste="$event.preventDefault()" name="Email" required />
+                @*<span asp-validation-for="Mobile_No" class="text-danger"></span>*@
+                <div ng-show="form.$submitted || form.Email.$touched">
+                    <span ng-show="form.Email.$error.required" class="text-danger"> *Email required.. </span>
+                    <span ng-show="form.Email.$error.email" class="text-danger"> *Enter valid Email.. </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Pincode" class="control-label"></label>
+                <input asp-for="Pincode" class="form-control" name="Pincode" ng-model="Pincode" ng-paste="$event.preventDefault()" ng-minlength="6" ng-maxlength="6" required />
+                @*<span asp-validation-for="Pincode" class="text-danger"></span>*@
+                <div ng-show="form.$submitted || form.Pincode.$touched">
+                    <span ng-show="form.Pincode.$error.required" class="text-danger"> *Pincode required.. </span>
+                    <span ng-show="form.Pincode.$error.minlength" class="text-danger"> PINCODE should be 6 character long!! </span>
+                    <span ng-show="form.Pincode.$error.maxlength" class="text-danger"> *Max 6 allowed.. </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div> 
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}

@@ -1,0 +1,63 @@
+﻿@model Task1_CRUD_24_FEB_22_CORE_WEB_APP.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>User</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Id" class="control-label"></label>
+                <input asp-for="Id" class="form-control" ng-paste="$event.preventDefault()" disabled />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="First_name" class="control-label"></label>
+                <input asp-for="First_name" class="form-control" ng-paste="$event.preventDefault()" required />
+                <span asp-validation-for="First_name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Last_name" class="control-label"></label>
+                <input asp-for="Last_name" class="form-control" ng-paste="$event.preventDefault()" required/>
+                <span asp-validation-for="Last_name" class="text-danger"></span>
+            </div>
+            <div class="form-group" ng-if="@Model.Mobile_No != 0">
+                <label asp-for="Mobile_No" class="control-label"></label>
+                <input asp-for="Mobile_No" class="form-control" ng-paste="$event.preventDefault()" required/>
+                
+                <span asp-validation-for="Mobile_No" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group" ng-if="@Model.Email.Length !=0 ">     
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" ng-paste="$event.preventDefault()" required/>
+                
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Pincode" class="control-label"></label>
+                <input asp-for="Pincode" class="form-control" ng-paste="$event.preventDefault()" required/>
+                <span asp-validation-for="Pincode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
