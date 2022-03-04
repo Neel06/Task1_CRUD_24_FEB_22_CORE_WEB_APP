@@ -44,10 +44,14 @@
 
             <div class="form-group">
                 <label class="control-label"> Select Contact Method</label>
-                <select class="form-control" name="Contact_Method" ng-model="Contact_Method">
+                <select class="form-control" name="Contact_Method" ng-model="Contact_Method" required>
+                    <option value="" selected disabled>--Select Contact Method--</option>
                     <option value="Mobile_No">Mobile No</option>
                     <option value="Email">Email</option>
                 </select>
+                <div ng-show="form.$submitted || form.Contact_Method.$touched">
+                    <span ng-show="form.Contact_Method.$error.required" class="text-danger"> *Choose a contact method.. </span>
+                </div>
             </div>
 
 
@@ -83,7 +87,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-primary" ng-disabled="Contact_Method == '0'" />
             </div>
         </form>
     </div>
